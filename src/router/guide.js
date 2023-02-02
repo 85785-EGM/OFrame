@@ -4,7 +4,7 @@ import Router from '@/views/Router.vue'
 export default [
   {
     name: 'guide',
-    path: '/',
+    path: '/guide',
     component: Router,
     children: [
       {
