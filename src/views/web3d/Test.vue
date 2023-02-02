@@ -17,7 +17,7 @@
     <a-ocean color="aqua" depth="100" width="100" static-body></a-ocean>
     <a-sky color="#ECECEC"></a-sky>
 
-    <a-cam orbit-controls camera-position="2 2 2"></a-cam>
+    <a-cam orbit-controls="target: 0 1 0 " camera-position="0 2 5"></a-cam>
   </a-scene>
 </template>
 <script setup></script>

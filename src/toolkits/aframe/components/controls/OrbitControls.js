@@ -1,18 +1,22 @@
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { Vector3 } from 'three'
 
 export default {
   dependencies: ['camera'],
   schema: {
-    target: {
-      default: '0 0 0',
-      parse: value => new Vector3(...value.split(' ').map(f => parseFloat(f)))
-    }
+    target: { type: 'vec3' }
   },
+
   init () {
-    const { target } = this.data
+    const camera = this.el.components.camera.camera
+    const renderer = this.el.sceneEl.renderer
+    this.controls = new OrbitControls(camera, renderer.domElement)
   },
-  updated () {
-    console.log('asdf')
+
+  update () {
+    this.controls.target.copy(this.data.target)
+  },
+
+  tock () {
+    this.controls.update()
   }
 }
