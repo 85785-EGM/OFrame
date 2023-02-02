@@ -9,7 +9,8 @@
   "cSpell.words": [
     "aframe",
     "esbuild",
-    "pinia"
+    "pinia",
+    "Toolkits"
   ],
   "debug.javascript.debugByLinkOptions": "always",
   "editor.formatOnSave": true,
