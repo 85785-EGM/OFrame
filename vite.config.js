@@ -50,13 +50,10 @@ export default defineConfig({
   ],
   resolve: {
     alias: [
-      ...fs.readdirSync(path.resolve(__dirname, 'vendor')).map(m => {
-        const key = path.basename(m, '.js')
-        return {
-          find: key,
-          replacement: path.resolve(__dirname, 'vendor', key)
-        }
-      }),
+      {
+        find: /^three/,
+        replacement: path.resolve(__dirname, 'vendor', 'three')
+      },
       { find: /^@(?=\/)/, replacement: path.resolve(__dirname, 'src') }
     ]
   },
