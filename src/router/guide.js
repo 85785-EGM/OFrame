@@ -1,4 +1,4 @@
-import Home from '@/views/Home.vue'
+import Home from '@/views/guide/Home.vue'
 import Router from '@/views/Router.vue'
 
 export default [
