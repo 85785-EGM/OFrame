@@ -10,6 +10,7 @@
     "aframe",
     "esbuild",
     "pinia",
+    "raycaster",
     "tock",
     "Toolkits"
   ],
