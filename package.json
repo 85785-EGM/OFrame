@@ -12,6 +12,7 @@
   "dependencies": {
     "aframe": "npm:aframe-wz@^1.2.0-beta.8",
     "pinia": "^2.0.9",
+    "uuid": "^9.0.0",
     "vue": "3.2.x",
     "vue-router": "^4.0.14"
   },
@@ -21,6 +22,7 @@
     "esbuild": "^0.14.36",
     "eslint-plugin-vue": "^8.6.0",
     "standard": "^16.0.4",
-    "vite": "^2.9.1"
+    "vite": "^2.9.1",
+    "ws": "^8.12.0"
   }
 }
