@@ -12,7 +12,8 @@
     "pinia",
     "raycaster",
     "tock",
-    "Toolkits"
+    "Toolkits",
+    "uuidv"
   ],
   "debug.javascript.debugByLinkOptions": "always",
   "editor.formatOnSave": true,
