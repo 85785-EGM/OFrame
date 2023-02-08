@@ -9,7 +9,32 @@ function onclose (event) {
   this.isOpen = false
 }
 function onerror (event) {}
-function onmessage (event) {}
+function onmessage (event) {
+  const { type = 'callback:trigger', ...msg } = JSON.parse(
+    event.data.toString()
+  )
+
+  switch (type) {
+    case 'callback:trigger':
+      messageTrigger.call(this, msg)
+      break
+  }
+}
+
+function messageTrigger (msg) {
+  const { resolve, reject } = this.callbacks.get(msg.id)
+  switch (msg.statusCode) {
+    case 200:
+      resolve(msg.result)
+      break
+    case 404:
+      reject('no handler')
+      break
+    case 500:
+      reject(msg.result)
+      break
+  }
+}
 
 class WebSocket2 extends window.WebSocket {
   constructor (address, protocols) {
@@ -24,6 +49,7 @@ class WebSocket2 extends window.WebSocket {
     this.onmessage = onmessage.bind(this)
   }
 
+  /** 等待连接成功 */
   waitOpen () {
     return new Promise(resolve => {
       if (this.isOpen) resolve()
@@ -31,19 +57,17 @@ class WebSocket2 extends window.WebSocket {
     })
   }
 
-  trigger (name, data, option = {}) {
+  /** 触发服务器事件
+   * @param {string} name 事件名称
+   * @param {any} data 传递的数据
+   * @param {object} options 传递的配置
+   */
+  trigger (name, data, options = {}) {
     const id = uuidv4()
-    const sendData = JSON.stringify({ id, name, data, option })
+    const sendData = JSON.stringify({ id, name, data, options })
     this.send(sendData)
-    return new Promise(resolve => {
-      this.callbacks.set(id, resolve)
+    return new Promise((resolve, reject) => {
+      this.callbacks.set(id, { resolve, reject })
     })
   }
 }
-
-const ws = new WebSocket2('ws://localhost:8080', 'json')
-
-;(async function () {
-  await ws.waitOpen()
-  console.log(await ws.trigger('console.log', '你好'))
-})()
