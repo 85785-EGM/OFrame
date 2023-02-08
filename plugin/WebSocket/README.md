@@ -15,6 +15,7 @@ const ws = new WebSocket2('ws://localhost:8080')
 ```
 
 # 使用方法（后端nodejs）
+需要安装 `npm install ws`
 ```JavaScript
 const WebSocketServer = require('./WebSocket')
 // 监听8080端口
