@@ -17,7 +17,6 @@ export default {
     // PAN是平移，按下ctrl｜meta｜shift切换到ROTATE，ROTATE同理
     this.controls.mouseButtons.RIGHT = MOUSE.ROTATE
     this.controls.mouseButtons.MIDDLE = MOUSE.PAN
-    console.log(this.controls)
   },
 
   update () {
