@@ -40,35 +40,14 @@
 </template>
 <script setup>
 import { reactive } from 'vue'
+import { parse } from '@/utils/aframe'
 
 const state = reactive({
   form: {
     maximum: -1,
-    depth: 1,
+    depth: 5,
     needFill: false
   }
 })
-
-function parse (data) {
-  if (Array.isArray(data)) {
-    return data.map(parse).join(',')
-  }
-  if (data?.isVector3) {
-    return vec3(...data.toArray())
-  }
-  if (typeof data === 'object' && data !== null) {
-    return (
-      Object.entries(data)
-        // eslint-disable-next-line no-unused-vars
-        .filter(([_, value]) => ![null, undefined].includes(value))
-        .map(([key, value]) => {
-          return `${key}: ${parse(value)}`
-        })
-        .join('; ')
-        .concat(';')
-    )
-  }
-  return data.toString()
-}
 </script>
 <style scoped></style>
