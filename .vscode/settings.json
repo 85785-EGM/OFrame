@@ -5,15 +5,21 @@
   "[vue]": {
     "editor.defaultFormatter": "numso.prettier-standard-vscode"
   },
+  "[typescript]": {
+    "editor.defaultFormatter": "numso.prettier-standard-vscode"
+  },
   "cSpell.enabled": true,
   "cSpell.words": [
     "aframe",
     "esbuild",
+    "lerp",
     "pinia",
     "raycaster",
     "tock",
     "Toolkits",
-    "uuidv"
+    "unplugin",
+    "uuidv",
+    "wireframe"
   ],
   "debug.javascript.debugByLinkOptions": "always",
   "editor.formatOnSave": true,
@@ -34,8 +40,10 @@
     ],
     "ignore": [
       "node_modules/**",
-      "*.vue"
+      "*.vue",
+      "*.ts",
     ]
   },
-  "vue3snippets.enable-compile-vue-file-on-did-save-code": false
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true
 }
