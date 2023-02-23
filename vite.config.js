@@ -1,7 +1,8 @@
 import vue from '@vitejs/plugin-vue'
-import fs from 'fs'
 import path from 'path'
 import { defineConfig } from 'vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,31 +15,6 @@ export default defineConfig({
     port: 4321,
     strictPort: true
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        charset: false
-      },
-      less: {
-        charset: false
-      }
-    },
-    charset: false,
-    postcss: {
-      plugins: [
-        {
-          postcssPlugin: 'internal:charset-removal',
-          AtRule: {
-            charset: atRule => {
-              if (atRule.name === 'charset') {
-                atRule.remove()
-              }
-            }
-          }
-        }
-      ]
-    }
-  },
   plugins: [
     vue({
       template: {
@@ -46,6 +22,10 @@ export default defineConfig({
           isCustomElement: tag => tag.startsWith('a-')
         }
       }
+    }),
+    Components({
+      // ui库解析器，也可以自定义
+      resolvers: [ElementPlusResolver()]
     })
   ],
   resolve: {
@@ -58,19 +38,6 @@ export default defineConfig({
     ]
   },
   build: {
-    chunkSizeWarningLimit: 2048,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'element-plus': ['element-plus'],
-          'ali-oss': ['ali-oss'],
-          aframe: ['aframe']
-        }
-      }
-    }
-  },
-  test: {
-    environment: 'jsdom',
-    includeSource: ['src/**/*.{js,ts}']
+    chunkSizeWarningLimit: 2048
   }
 })

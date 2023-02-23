@@ -1,4 +1,4 @@
-import Test from '@/views/web3d/Test.vue'
+import Octree from '@/views/web3d/Octree.vue'
 import Router from '@/views/Router.vue'
 
 export default [
@@ -8,9 +8,9 @@ export default [
     component: Router,
     children: [
       {
-        name: 'web3d-test',
-        path: 'test',
-        component: Test
+        name: 'web3d-octree',
+        path: 'octree',
+        component: Octree
       }
     ]
   }
