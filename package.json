@@ -12,6 +12,7 @@
   "dependencies": {
     "aframe": "npm:aframe-wz@^1.2.0-beta.8",
     "pinia": "^2.0.32",
+    "three-mesh-bvh": "^0.5.23",
     "ts-standard": "^12.0.2",
     "uuid": "^9.0.0",
     "vue": "3.2.x",

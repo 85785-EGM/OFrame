@@ -142,10 +142,14 @@ export class TreeNode {
   // 索引对应的是根数据的buffer,三角面片索引
   tIndex: Uint32Array
   leafs: Array<TreeNode> = []
+  // box的中心点 和 sphere的半径
+  center: Vector3
+  radius: number
 
   constructor (box: Box3, index: Uint32Array, tIndex?: Uint32Array | never) {
     this.box = box
     this.index = index
+    this.center = new Vector3()
     if (tIndex) this.tIndex = tIndex
   }
 
@@ -155,6 +159,11 @@ export class TreeNode {
 
   clone (): TreeNode {
     return new TreeNode(this.box, this.index, this.tIndex)
+  }
+
+  computeBoundingSphere (): void {
+    this.center = this.center.lerpVectors(this.box.max, this.box.min, 0.5)
+    this.radius = this.box.max.distanceTo(this.center)
   }
 
   get isLeaf (): boolean {

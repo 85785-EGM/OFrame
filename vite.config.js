@@ -31,7 +31,15 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: /^three/,
+        find: /^plugin(?=\/)/,
+        replacement: path.resolve(__dirname, 'plugin')
+      },
+      {
+        find: /^three-mesh-bvh$/,
+        replacement: path.resolve(__dirname, 'vendor', 'three-mesh-bvh')
+      },
+      {
+        find: /^three(?!-)/,
         replacement: path.resolve(__dirname, 'vendor', 'three')
       },
       { find: /^@(?=\/)/, replacement: path.resolve(__dirname, 'src') }
